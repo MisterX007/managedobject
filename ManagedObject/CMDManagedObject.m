@@ -11,16 +11,16 @@
 
 @dynamic createdAt;
 
-#pragma mark - custom model name
+#pragma mark - custom entity
 
-+ (NSString *)modelName {
++ (NSString *)entityName {
   return NSStringFromClass(self);
 }
 
 #pragma mark - create objects
 
 + (id)instanceInContext:(NSManagedObjectContext *)context {
-    NSString *name = [self modelName];
+    NSString *name = [self entityName];
     id instance = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     [(id)instance setCreatedAt:[NSDate date]];
     return instance;
@@ -29,7 +29,7 @@
 #pragma mark - fetch requests
 
 + (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context {
-    NSString *name = [self modelName];
+    NSString *name = [self entityName];
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
@@ -73,6 +73,21 @@
     return [context executeFetchRequest:request error:nil];
 }
 
++ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", key, value];
+    NSArray *matching = [self allInContext:context predicate:predicate];
+    return [matching lastObject];
+}
+
++ (instancetype)findOrCreateByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context {
+    id object = [self findByKey:key value:value inContext:context];
+    if (object == nil) {
+        object = [self instanceInContext:context];
+        [object setValue:value forKey:key];
+    }
+    return object;
+}
+
 #pragma mark - count objects
 
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context {
@@ -85,6 +100,12 @@
         [request setPredicate:predicate];
     }
     return [context countForFetchRequest:request error:nil];
+}
+
+#pragma mark - delete objects
+
+- (void)delete {
+    [[self managedObjectContext] deleteObject:self];
 }
 
 @end

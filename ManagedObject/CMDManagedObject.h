@@ -11,8 +11,8 @@
 
 @property (nonatomic, retain) NSDate *createdAt;
 
-// override this method to provide a model name other than the class name
-+ (NSString *)modelName;
+// override this method to provide an entity name other than the class name
++ (NSString *)entityName;
 
 // create object in specified context
 + (id)instanceInContext:(NSManagedObjectContext *)context;
@@ -28,8 +28,15 @@
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptor:(NSSortDescriptor *)descriptor;
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors;
 
+// find and find or create with simple key-value pairs
++ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context;
++ (instancetype)findOrCreateByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context;
+
 // count objects in specified context
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context;
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate;
+
+// delete an object
+- (void)delete;
 
 @end
