@@ -18,7 +18,8 @@
 + (id)instanceInContext:(NSManagedObjectContext *)context;
 
 // create a fecth request based on the class
-+ (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context;
++ (NSFetchRequest *)fetchRequest;
++ (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context DEPRECATED_ATTRIBUTE;
 
 // find objects in specified context
 + (NSArray *)allInContext:(NSManagedObjectContext *)context;

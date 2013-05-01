@@ -28,16 +28,12 @@
 
 #pragma mark - fetch requests
 
-+ (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context {
-    NSString *name = [self entityName];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-#if __has_feature(objc_arc)
-    return request;
-#else
-    return [request autorelease];
-#endif
++ (NSFetchRequest *)fetchRequest {
+    return [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+}
+
++ (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext * __unused)context {
+    return [self fetchRequest];
 }
 
 #pragma mark - find objects
@@ -63,7 +59,7 @@
 }
 
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors {
-    NSFetchRequest *request = [self fetchRequestInContext:context];
+    NSFetchRequest *request = [self fetchRequest];
     if (descriptors) {
         [request setSortDescriptors:descriptors];
     }
@@ -75,7 +71,10 @@
 
 + (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", key, value];
-    NSArray *matching = [self allInContext:context predicate:predicate];
+    NSFetchRequest *request = [self fetchRequest];
+    [request setFetchLimit:1];
+    [request setPredicate:predicate];
+    NSArray *matching = [context executeFetchRequest:request error:nil];
     return [matching lastObject];
 }
 
@@ -95,7 +94,7 @@
 }
 
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate {
-    NSFetchRequest *request = [self fetchRequestInContext:context];
+    NSFetchRequest *request = [self fetchRequest];
     if (predicate) {
         [request setPredicate:predicate];
     }
