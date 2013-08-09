@@ -41,7 +41,7 @@
 
 + (instancetype)instanceWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context {
     NSNumber *remoteID = dictionary[@"id"];
-    id object = [[self class] findOrCreateByRemoteID:remoteID inContext:context];
+    id object = [self findOrCreateByRemoteID:remoteID inContext:context];
     if ([object shouldUnpackDictionary:dictionary]) {
         [object unpackDictionary:dictionary];
     }

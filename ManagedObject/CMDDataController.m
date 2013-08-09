@@ -34,11 +34,6 @@ static NSManagedObjectContext *__mainQueueContext;
      }];
 }
 
-
-+ (void)initialize {
-    [self persistentStore];
-}
-
 #pragma mark - Methods for subclasses
 
 + (NSManagedObjectModel *)managedObjectModel {
@@ -56,9 +51,9 @@ static NSManagedObjectContext *__mainQueueContext;
 
 + (NSDictionary *)persistentStoreOptions {
     return @{
-        NSMigratePersistentStoresAutomaticallyOption : @YES,
-        NSInferMappingModelAutomaticallyOption : @YES
-    };
+             NSMigratePersistentStoresAutomaticallyOption : @YES,
+             NSInferMappingModelAutomaticallyOption : @YES
+             };
 }
 
 
@@ -131,6 +126,7 @@ static NSManagedObjectContext *__mainQueueContext;
 
 + (NSManagedObjectContext *)privateQueueContext {
     if (__privateQueueContext == nil) {
+        [self persistentStoreWithoutGuard];
         __privateQueueContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [__privateQueueContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
     }
