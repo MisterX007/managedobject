@@ -17,7 +17,7 @@
 + (instancetype)findOrCreateByRemoteID:(NSNumber *)remoteID inContext:(NSManagedObjectContext *)context;
 
 // find or create an instance with the given dictionary
-+ (instancetype)inctanceWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context;
++ (instancetype)instanceWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context;
 
 // dictionary unpacking
 - (void)unpackDictionary:(NSDictionary *)dictionary;

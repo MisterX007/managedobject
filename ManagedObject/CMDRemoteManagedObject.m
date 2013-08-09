@@ -39,7 +39,7 @@
     return NO;
 }
 
-+ (instancetype)inctanceWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context {
++ (instancetype)instanceWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context {
     NSNumber *remoteID = dictionary[@"id"];
     id object = [[self class] findOrCreateByRemoteID:remoteID inContext:context];
     if ([object shouldUnpackDictionary:dictionary]) {

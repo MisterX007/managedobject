@@ -11,6 +11,7 @@
 		3B804A771724670B0022B8E8 /* CMDManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B804A761724670B0022B8E8 /* CMDManagedObject.m */; };
 		3B804A7B172467320022B8E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B804A7A172467320022B8E8 /* CoreData.framework */; };
 		3B804A7E172467D70022B8E8 /* CMDRemoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B804A7D172467D70022B8E8 /* CMDRemoteManagedObject.m */; };
+		3B8709EC17B5622E0074BD0A /* CMDDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8709EB17B5622E0074BD0A /* CMDDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,8 @@
 		3B804A7A172467320022B8E8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3B804A7C172467D70022B8E8 /* CMDRemoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDRemoteManagedObject.h; sourceTree = "<group>"; };
 		3B804A7D172467D70022B8E8 /* CMDRemoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDRemoteManagedObject.m; sourceTree = "<group>"; };
+		3B8709EA17B5622E0074BD0A /* CMDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDDataController.h; sourceTree = "<group>"; };
+		3B8709EB17B5622E0074BD0A /* CMDDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				3B804A761724670B0022B8E8 /* CMDManagedObject.m */,
 				3B804A7C172467D70022B8E8 /* CMDRemoteManagedObject.h */,
 				3B804A7D172467D70022B8E8 /* CMDRemoteManagedObject.m */,
+				3B8709EA17B5622E0074BD0A /* CMDDataController.h */,
+				3B8709EB17B5622E0074BD0A /* CMDDataController.m */,
 				3B804A6A172466E10022B8E8 /* Supporting Files */,
 			);
 			path = ManagedObject;
@@ -152,6 +157,7 @@
 			files = (
 				3B804A771724670B0022B8E8 /* CMDManagedObject.m in Sources */,
 				3B804A7E172467D70022B8E8 /* CMDRemoteManagedObject.m in Sources */,
+				3B8709EC17B5622E0074BD0A /* CMDDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
