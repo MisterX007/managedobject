@@ -29,13 +29,15 @@
 }
 
 - (BOOL)shouldUnpackDictionary:(NSDictionary *)dictionary {
+    if (!self.updatedAt) {
+        return YES;
+    }
+    
     NSDate *updatedAt = [[self class] parseDate:dictionary[@"updated_at"]];
-    if (!self.updatedAt && !updatedAt) {
+    if (updatedAt && [self.updatedAt compare:updatedAt] == NSOrderedAscending) {
         return YES;
     }
-    else if (self.updatedAt && updatedAt && [self.updatedAt compare:updatedAt] == NSOrderedAscending) {
-        return YES;
-    }
+    
     return NO;
 }
 
