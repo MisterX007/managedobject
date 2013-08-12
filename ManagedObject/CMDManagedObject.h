@@ -15,18 +15,23 @@
 // override this method to provide an entity name other than the class name
 + (NSString *)entityName;
 
+// default sort descriptors
++ (NSArray *)defaultSortDescriptors;
+
 // create object in specified context
-+ (id)instanceInContext:(NSManagedObjectContext *)context;
++ (instancetype)instanceInContext:(NSManagedObjectContext *)context;
 
 // create a fecth request based on the class
 + (NSFetchRequest *)fetchRequest;
 + (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context DEPRECATED_ATTRIBUTE;
 
-// find objects in specified context
+// find objects in the specified context with the default sort descriptors
 + (NSArray *)allInContext:(NSManagedObjectContext *)context;
++ (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate;
+
+// find objects in the specified context with the specified sort descriptors and predicate
 + (NSArray *)allInContext:(NSManagedObjectContext *)context sortDescriptor:(NSSortDescriptor *)descriptor;
 + (NSArray *)allInContext:(NSManagedObjectContext *)context sortDescriptors:(NSArray *)descriptors;
-+ (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate;
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptor:(NSSortDescriptor *)descriptor;
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors;
 

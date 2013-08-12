@@ -17,6 +17,10 @@
   return NSStringFromClass(self);
 }
 
++ (NSArray *)defaultSortDescriptors {
+    return @[ [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO] ];
+}
+
 #pragma mark - create objects
 
 + (id)instanceInContext:(NSManagedObjectContext *)context {
@@ -39,7 +43,7 @@
 #pragma mark - find objects
 
 + (NSArray *)allInContext:(NSManagedObjectContext *)context {
-    return [self allInContext:context predicate:nil sortDescriptors:nil];
+    return [self allInContext:context predicate:nil sortDescriptors:[self defaultSortDescriptors]];
 }
 
 + (NSArray *)allInContext:(NSManagedObjectContext *)context sortDescriptor:(NSSortDescriptor *)descriptor {
@@ -51,7 +55,7 @@
 }
 
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate {
-    return [self allInContext:context predicate:predicate sortDescriptors:nil];
+    return [self allInContext:context predicate:predicate sortDescriptors:[self defaultSortDescriptors]];
 }
 
 + (NSArray *)allInContext:(NSManagedObjectContext *)context predicate:(NSPredicate *)predicate sortDescriptor:(NSSortDescriptor *)descriptor {

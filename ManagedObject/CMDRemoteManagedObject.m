@@ -20,6 +20,13 @@
     return nil;
 }
 
++ (NSArray *)defaultSortDescriptors {
+    return @[
+        [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO],
+        [NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:NO]
+    ];
+}
+
 #pragma mark - unpacking
 
 - (void)unpackDictionary:(NSDictionary *)dictionary {
